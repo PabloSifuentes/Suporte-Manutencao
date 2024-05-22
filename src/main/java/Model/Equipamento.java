@@ -1,12 +1,17 @@
 package Model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.util.Objects;
 
 @Entity
 public class Equipamento {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long idEquipamento;
 
      private String  tipoDeEquipamento;
