@@ -1,4 +1,4 @@
-package Model;
+package br.com.senai.sa2semestre.suportemanutencao.entities;
 
 import jakarta.persistence.*;
 
