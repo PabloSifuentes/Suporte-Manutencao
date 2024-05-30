@@ -28,8 +28,8 @@ public class EquipamentoController {
      * Retorna o item pelo respectivo ID.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Equipamento> getEquipamentoById(@PathVariable Long idParaBusca) {
-        Optional<Equipamento> equipamentoBuscado = equipamentoRepository.findById(idParaBusca);
+    public ResponseEntity<Equipamento> getEquipamentoById(@PathVariable Long id) {
+        Optional<Equipamento> equipamentoBuscado = equipamentoRepository.findById(id);
         return equipamentoBuscado.map(ResponseEntity::ok).orElseGet(() ->
                 ResponseEntity.notFound().build());
     }
@@ -61,8 +61,8 @@ public class EquipamentoController {
      * Deleta um item dentro do Repositório.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEquipamento(@PathVariable Long idParaDeletar) {
-        Optional<Equipamento> equipamentoParaDeletar = equipamentoRepository.findById(idParaDeletar);
+    public ResponseEntity<Void> deleteEquipamento(@PathVariable Long id) {
+        Optional<Equipamento> equipamentoParaDeletar = equipamentoRepository.findById(id);
         if (equipamentoParaDeletar.isPresent()) {
             equipamentoRepository.delete(equipamentoParaDeletar.get());
             return ResponseEntity.noContent().build(); // Conteúdo deletado.

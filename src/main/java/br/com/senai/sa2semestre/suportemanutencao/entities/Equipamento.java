@@ -30,7 +30,6 @@ public class Equipamento {
     }
 
     public Equipamento(){
-
     }
 
     public Long getIdEquipamento() {
