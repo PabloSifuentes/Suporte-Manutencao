@@ -32,7 +32,6 @@ public class Manutencao {
         this.descricaoServico = descricaoServico;
         this.estado = estado;
     }
-
     public Long getIdManutencao() {
         return idManutencao;
     }

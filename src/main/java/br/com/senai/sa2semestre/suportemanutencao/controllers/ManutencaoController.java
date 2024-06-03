@@ -16,22 +16,34 @@ public class ManutencaoController {
     @Autowired
     private ManutencaoRepository manutencaoRepository;
 
+    /**
+     * Adiciona todos os itens na lista.
+     */
     @GetMapping
     public List<Manutencao> getAllManutencao() {
         return manutencaoRepository.findAll();
     }
 
+    /**
+     * Retorna o item pelo respectivo ID.
+     */
     @GetMapping("/{id}")
-    public ResponseEntity<Manutencao> getManutencaoById(@PathVariable Long idParaBusca) {
-        Optional<Manutencao> manutencaoBuscado = manutencaoRepository.findById(idParaBusca);
+    public ResponseEntity<Manutencao> getManutencaoById(@PathVariable Long id) {
+        Optional<Manutencao> manutencaoBuscado = manutencaoRepository.findById(id);
         return manutencaoBuscado.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    /**
+     * Criar um item adicionado no Repositório (Banco de dados).
+     */
     @PostMapping
     public Manutencao createManutencao(@RequestBody Manutencao manutencao) {
         return manutencaoRepository.save(manutencao);
     }
 
+    /**
+     * Atualiza um item dentro do Repositório.
+     */
     @PostMapping("/{id}")
     public ResponseEntity<Manutencao> upadateManutencao(@PathVariable Long id, @RequestBody Manutencao manutencaoComDadosAtualizados) {
         Optional<Manutencao> existingManutencao = manutencaoRepository.findById(id);
@@ -44,9 +56,12 @@ public class ManutencaoController {
         }
     }
 
+    /**
+     * Deleta um item dentro do Repositório.
+     */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteManutencao(@PathVariable Long idParaDeletar) {
-        Optional<Manutencao> manutencaoParaDeletar = manutencaoRepository.findById(idParaDeletar);
+    public ResponseEntity<Void> deleteManutencao(@PathVariable Long id) {
+        Optional<Manutencao> manutencaoParaDeletar = manutencaoRepository.findById(id);
         if (manutencaoParaDeletar.isPresent()) {
             manutencaoRepository.delete(manutencaoParaDeletar.get());
             return ResponseEntity.noContent().build(); //Conteúdo deletado.
