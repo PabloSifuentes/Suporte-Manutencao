@@ -34,7 +34,7 @@ public class ManutencaoController {
     }
 
     /**
-     * Criar um item adicionado no Repositório (Banco de dados).
+     * Cria um item adicionado no Repositório (Banco de dados).
      */
     @PostMapping
     public Manutencao createManutencao(@RequestBody Manutencao manutencao) {

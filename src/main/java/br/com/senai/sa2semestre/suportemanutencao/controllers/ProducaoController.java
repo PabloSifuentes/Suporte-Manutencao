@@ -12,14 +12,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/producoes")
 public class ProducaoController {
-    /**
-     * Adiciona todos os itens na lista.
-     */
+
     @Autowired
     private ProducaoRepository producaoRepository;
 
     /**
-     * Retorna o item pelo respectivo ID.
+     * Adiciona todos os itens na lista.
      */
     @GetMapping
     public List<Producao> getALLProducao() {
@@ -27,7 +25,7 @@ public class ProducaoController {
     }
 
     /**
-     * Cria um item adicionando no Repository (Banco de dados).
+     * Retorna o item pelo respectivo ID.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Producao> getProducaoById(@PathVariable Long id) {
@@ -36,7 +34,7 @@ public class ProducaoController {
     }
 
     /**
-     * Atualiza o item dentro do Repository.
+     * Cria um item adicionando no Repository (Banco de Dados).
      */
     @PostMapping
     public Producao createProducao(@RequestBody Producao producao) {
@@ -44,7 +42,7 @@ public class ProducaoController {
     }
 
     /**
-     * Deletar um item dentro do Repository.
+     * Atualiza um item dentro do Repository.
      */
     @PutMapping("/{id}")
     public ResponseEntity<Producao> updateProducao(@PathVariable Long id, @RequestBody Producao producaoComDadosAtualizados) {
