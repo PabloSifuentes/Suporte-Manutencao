@@ -2,8 +2,9 @@ package br.com.senai.sa2semestre.suportemanutencao.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pecas {
@@ -15,18 +16,21 @@ public class Pecas {
 
     private String descricao;
 
-    @OneToMany(mappedBy = "pecas")
-    private List<Estoque> listaDoestoques;
+   private int quantidade;
 
-    public Pecas(Long idPecas, String nome, String descricao) {
-        this.idPecas = idPecas;
-        this.nome = nome;
-        this.descricao = descricao;
-    }
+   @ManyToMany(mappedBy = "pecas")
+   private Set<Veiculo> veiculos = new HashSet<>();
 
     public Pecas() {
     }
 
+    public Pecas(Long idPecas, String nome, String descricao, int quantidade, Set<Veiculo> veiculos) {
+        this.idPecas = idPecas;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.veiculos = veiculos;
+    }
     public Long getIdPecas() {
         return idPecas;
     }
@@ -51,6 +55,22 @@ public class Pecas {
         this.descricao = descricao;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Set<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
+    public void setVeiculos(Set<Veiculo> veiculos) {
+        this.veiculos = veiculos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,9 +78,11 @@ public class Pecas {
 
         Pecas pecas = (Pecas) o;
 
+        if (quantidade != pecas.quantidade) return false;
         if (!idPecas.equals(pecas.idPecas)) return false;
         if (!Objects.equals(nome, pecas.nome)) return false;
-        return Objects.equals(descricao, pecas.descricao);
+        if (!Objects.equals(descricao, pecas.descricao)) return false;
+        return Objects.equals(veiculos, pecas.veiculos);
     }
 
     @Override
@@ -68,6 +90,8 @@ public class Pecas {
         int result = idPecas.hashCode();
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
+        result = 31 * result + quantidade;
+        result = 31 * result + (veiculos != null ? veiculos.hashCode() : 0);
         return result;
     }
 
@@ -77,6 +101,8 @@ public class Pecas {
                 "idPecas=" + idPecas +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", quantidade=" + quantidade +
+                ", veiculos=" + veiculos +
                 '}';
     }
 }

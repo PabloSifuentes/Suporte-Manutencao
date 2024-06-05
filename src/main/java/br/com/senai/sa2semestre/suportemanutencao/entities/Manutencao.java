@@ -12,7 +12,7 @@ public class Manutencao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idManutencao;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idEquipamento", referencedColumnName = "idEquipamento")
     private Equipamento equipamento;
 
