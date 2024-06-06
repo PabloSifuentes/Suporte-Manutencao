@@ -3,32 +3,40 @@ package br.com.senai.sa2semestre.suportemanutencao.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 @Entity
 public class Producao {
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProducao;
 
     private LocalDateTime dataHora;
-@OneToOne
+@ManyToOne
 @JoinColumn(name = "idPecas", referencedColumnName = "idPecas")
     private Pecas pecas;
+
+@OneToMany(mappedBy = "producao")
+private List<Qualidade> listaDeInspecao;
 
     private Long quantidadeProduzada;
 
     private String estado;
+    public Producao(){
+    }
 
-    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, Long quantidadeProduzada, String estado) {
+    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, List<Qualidade> listaDeInspecao, Long quantidadeProduzada, String estado) {
         this.idProducao = idProducao;
         this.dataHora = dataHora;
         this.pecas = pecas;
+        this.listaDeInspecao = listaDeInspecao;
         this.quantidadeProduzada = quantidadeProduzada;
         this.estado = estado;
     }
-public Long getIdProducao() {
-     return idProducao;
-}
+
+    public Long getIdProducao() {
+        return idProducao;
+    }
 
     public void setIdProducao(Long idProducao) {
         this.idProducao = idProducao;
@@ -48,6 +56,14 @@ public Long getIdProducao() {
 
     public void setPecas(Pecas pecas) {
         this.pecas = pecas;
+    }
+
+    public List<Qualidade> getListaDeInspecao() {
+        return listaDeInspecao;
+    }
+
+    public void setListaDeInspecao(List<Qualidade> listaDeInspecao) {
+        this.listaDeInspecao = listaDeInspecao;
     }
 
     public Long getQuantidadeProduzada() {
@@ -76,6 +92,8 @@ public Long getIdProducao() {
         if (!idProducao.equals(producao.idProducao)) return false;
         if (!Objects.equals(dataHora, producao.dataHora)) return false;
         if (!Objects.equals(pecas, producao.pecas)) return false;
+        if (!Objects.equals(listaDeInspecao, producao.listaDeInspecao))
+            return false;
         if (!Objects.equals(quantidadeProduzada, producao.quantidadeProduzada))
             return false;
         return Objects.equals(estado, producao.estado);
@@ -86,6 +104,7 @@ public Long getIdProducao() {
         int result = idProducao.hashCode();
         result = 31 * result + (dataHora != null ? dataHora.hashCode() : 0);
         result = 31 * result + (pecas != null ? pecas.hashCode() : 0);
+        result = 31 * result + (listaDeInspecao != null ? listaDeInspecao.hashCode() : 0);
         result = 31 * result + (quantidadeProduzada != null ? quantidadeProduzada.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         return result;
@@ -97,6 +116,7 @@ public Long getIdProducao() {
                 "idProducao=" + idProducao +
                 ", dataHora=" + dataHora +
                 ", pecas=" + pecas +
+                ", listaDeInspecao=" + listaDeInspecao +
                 ", quantidadeProduzada=" + quantidadeProduzada +
                 ", estado='" + estado + '\'' +
                 '}';

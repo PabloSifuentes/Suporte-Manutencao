@@ -47,6 +47,7 @@ public class QualidadeController {
     public ResponseEntity<Qualidade> updateQualidade(@PathVariable Long id, @RequestBody Qualidade qualidadeComDadosAtualizados) {
         Optional<Qualidade> existingQualidade = qualidadeRepository.findById(id);
         if (existingQualidade.isPresent()) {
+            qualidadeComDadosAtualizados.setIdInspecao(id);
             return ResponseEntity.ok(qualidadeRepository.save(qualidadeComDadosAtualizados));
         }else {
             return ResponseEntity.noContent().build();

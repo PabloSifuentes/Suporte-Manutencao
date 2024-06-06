@@ -15,6 +15,7 @@ public class Veiculo {
             inverseJoinColumns = {@JoinColumn(name = "idPecas")}
     )
     Set<Pecas> pecas = new HashSet<>();
+    @Id
     private String chassi;
 
     private String modelo;

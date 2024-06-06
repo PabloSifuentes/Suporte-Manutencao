@@ -11,10 +11,12 @@ public class Estoque {
 
     private Long quantidadeEstoque;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idPecas", referencedColumnName = "idPecas")
     private Pecas pecas;
 
+    public Estoque(){
+    }
     public Estoque(Long idEstoque, Long quantidadeEstoque, Pecas pecas) {
         this.idEstoque = idEstoque;
         this.quantidadeEstoque = quantidadeEstoque;

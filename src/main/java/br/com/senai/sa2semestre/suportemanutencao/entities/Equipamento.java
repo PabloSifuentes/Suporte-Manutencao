@@ -21,15 +21,14 @@ public class Equipamento {
      @OneToMany(mappedBy = "equipamento")
      private List<Manutencao> listaDeManutencoes;
 
+    public Equipamento(){
+    }
     public Equipamento(Long idEquipamento, String tipoDeEquipamento, String descricao, String estado, List<Manutencao> listaDeManutencoes) {
         this.idEquipamento = idEquipamento;
         this.tipoDeEquipamento = tipoDeEquipamento;
         this.descricao = descricao;
         this.estado = estado;
         this.listaDeManutencoes = listaDeManutencoes;
-    }
-
-    public Equipamento(){
     }
 
     public Long getIdEquipamento() {

@@ -10,7 +10,7 @@ public class Qualidade {
 @Id
 @GeneratedValue
     private Long idInspecao;
-@OneToOne
+@ManyToOne
 @JoinColumn(name = "idProducao", referencedColumnName = "idProducao")
     private Producao producao;
 
@@ -20,6 +20,8 @@ private String resultado;
 
 private String comentarios;
 
+    public Qualidade(){
+    }
     public Qualidade(Long idInspecao, Producao producao, LocalDateTime dataHora, String resultado, String comentarios) {
         this.idInspecao = idInspecao;
         this.producao = producao;

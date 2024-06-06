@@ -3,6 +3,7 @@ package br.com.senai.sa2semestre.suportemanutencao.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,16 +22,24 @@ public class Pecas {
    @ManyToMany(mappedBy = "pecas")
    private Set<Veiculo> veiculos = new HashSet<>();
 
+   @OneToMany(mappedBy = "pecas")
+   private List<Producao> listaDeProducao;
+
+@OneToMany(mappedBy = "pecas")
+   private List<Estoque> listaDeEstoque;
     public Pecas() {
     }
 
-    public Pecas(Long idPecas, String nome, String descricao, int quantidade, Set<Veiculo> veiculos) {
+    public Pecas(Long idPecas, String nome, String descricao, int quantidade, Set<Veiculo> veiculos, List<Producao> listaDeProducao, List<Estoque> listaDeEstoque) {
         this.idPecas = idPecas;
         this.nome = nome;
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.veiculos = veiculos;
+        this.listaDeProducao = listaDeProducao;
+        this.listaDeEstoque = listaDeEstoque;
     }
+
     public Long getIdPecas() {
         return idPecas;
     }
@@ -71,6 +80,22 @@ public class Pecas {
         this.veiculos = veiculos;
     }
 
+    public List<Producao> getListaDeProducao() {
+        return listaDeProducao;
+    }
+
+    public void setListaDeProducao(List<Producao> listaDeProducao) {
+        this.listaDeProducao = listaDeProducao;
+    }
+
+    public List<Estoque> getListaDeEstoque() {
+        return listaDeEstoque;
+    }
+
+    public void setListaDeEstoque(List<Estoque> listaDeEstoque) {
+        this.listaDeEstoque = listaDeEstoque;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,7 +107,10 @@ public class Pecas {
         if (!idPecas.equals(pecas.idPecas)) return false;
         if (!Objects.equals(nome, pecas.nome)) return false;
         if (!Objects.equals(descricao, pecas.descricao)) return false;
-        return Objects.equals(veiculos, pecas.veiculos);
+        if (!Objects.equals(veiculos, pecas.veiculos)) return false;
+        if (!Objects.equals(listaDeProducao, pecas.listaDeProducao))
+            return false;
+        return Objects.equals(listaDeEstoque, pecas.listaDeEstoque);
     }
 
     @Override
@@ -92,6 +120,8 @@ public class Pecas {
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
         result = 31 * result + quantidade;
         result = 31 * result + (veiculos != null ? veiculos.hashCode() : 0);
+        result = 31 * result + (listaDeProducao != null ? listaDeProducao.hashCode() : 0);
+        result = 31 * result + (listaDeEstoque != null ? listaDeEstoque.hashCode() : 0);
         return result;
     }
 
@@ -103,6 +133,8 @@ public class Pecas {
                 ", descricao='" + descricao + '\'' +
                 ", quantidade=" + quantidade +
                 ", veiculos=" + veiculos +
+                ", listaDeProducao=" + listaDeProducao +
+                ", listaDeEstoque=" + listaDeEstoque +
                 '}';
     }
 }

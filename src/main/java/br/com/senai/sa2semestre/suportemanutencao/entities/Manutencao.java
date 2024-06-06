@@ -24,6 +24,8 @@ public class Manutencao {
 
     private String estado;
 
+    public Manutencao(){
+    }
     public Manutencao(Long idManutencao, Equipamento equipamento, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, String descricaoServico, String estado) {
         this.idManutencao = idManutencao;
         this.equipamento = equipamento;
