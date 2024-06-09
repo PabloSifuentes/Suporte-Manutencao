@@ -44,7 +44,7 @@ public class ManutencaoController {
     /**
      * Atualiza um item dentro do Repositório.
      */
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Manutencao> upadateManutencao(@PathVariable Long id, @RequestBody Manutencao manutencaoComDadosAtualizados) {
         Optional<Manutencao> existingManutencao = manutencaoRepository.findById(id);
         if (existingManutencao.isPresent()) {

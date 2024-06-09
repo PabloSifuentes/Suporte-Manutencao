@@ -19,18 +19,18 @@ public class Producao {
 @OneToMany(mappedBy = "producao")
 private List<Qualidade> listaDeInspecao;
 
-    private Long quantidadeProduzada;
+    private Long quantidadeProduzida;
 
     private String estado;
     public Producao(){
     }
 
-    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, List<Qualidade> listaDeInspecao, Long quantidadeProduzada, String estado) {
+    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, List<Qualidade> listaDeInspecao, Long quantidadeProduzida, String estado) {
         this.idProducao = idProducao;
         this.dataHora = dataHora;
         this.pecas = pecas;
         this.listaDeInspecao = listaDeInspecao;
-        this.quantidadeProduzada = quantidadeProduzada;
+        this.quantidadeProduzida = quantidadeProduzida;
         this.estado = estado;
     }
 
@@ -66,12 +66,12 @@ private List<Qualidade> listaDeInspecao;
         this.listaDeInspecao = listaDeInspecao;
     }
 
-    public Long getQuantidadeProduzada() {
-        return quantidadeProduzada;
+    public Long getQuantidadeProduzida() {
+        return quantidadeProduzida;
     }
 
-    public void setQuantidadeProduzada(Long quantidadeProduzada) {
-        this.quantidadeProduzada = quantidadeProduzada;
+    public void setQuantidadeProduzida(Long quantidadeProduzida) {
+        this.quantidadeProduzida = quantidadeProduzida;
     }
 
     public String getEstado() {
@@ -94,7 +94,7 @@ private List<Qualidade> listaDeInspecao;
         if (!Objects.equals(pecas, producao.pecas)) return false;
         if (!Objects.equals(listaDeInspecao, producao.listaDeInspecao))
             return false;
-        if (!Objects.equals(quantidadeProduzada, producao.quantidadeProduzada))
+        if (!Objects.equals(quantidadeProduzida, producao.quantidadeProduzida))
             return false;
         return Objects.equals(estado, producao.estado);
     }
@@ -105,7 +105,7 @@ private List<Qualidade> listaDeInspecao;
         result = 31 * result + (dataHora != null ? dataHora.hashCode() : 0);
         result = 31 * result + (pecas != null ? pecas.hashCode() : 0);
         result = 31 * result + (listaDeInspecao != null ? listaDeInspecao.hashCode() : 0);
-        result = 31 * result + (quantidadeProduzada != null ? quantidadeProduzada.hashCode() : 0);
+        result = 31 * result + (quantidadeProduzida != null ? quantidadeProduzida.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         return result;
     }
@@ -117,7 +117,7 @@ private List<Qualidade> listaDeInspecao;
                 ", dataHora=" + dataHora +
                 ", pecas=" + pecas +
                 ", listaDeInspecao=" + listaDeInspecao +
-                ", quantidadeProduzada=" + quantidadeProduzada +
+                ", quantidadeProduzida=" + quantidadeProduzida +
                 ", estado='" + estado + '\'' +
                 '}';
     }

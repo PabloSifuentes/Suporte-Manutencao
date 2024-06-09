@@ -43,7 +43,7 @@ public class EstoqueController {
     /**
      * Atualiza um item dentro do Repositório.
      */
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Estoque> UpdateEstoque(@PathVariable Long id, @RequestBody Estoque estoqueComDadosAtualizados) {
         Optional<Estoque> existingEstoque = estoqueRepository.findById(id);
         if (existingEstoque.isPresent()) {

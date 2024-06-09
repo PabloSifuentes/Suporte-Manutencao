@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 public class Qualidade {
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idInspecao;
 @ManyToOne
 @JoinColumn(name = "idProducao", referencedColumnName = "idProducao")
