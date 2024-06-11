@@ -25,7 +25,7 @@ public class Pecas {
    @OneToMany(mappedBy = "pecas")
    private List<Producao> listaDeProducao;
 
-@OneToMany(mappedBy = "pecas")
+   @OneToMany(mappedBy = "pecas")
    private List<Estoque> listaDeEstoque;
     public Pecas() {
     }

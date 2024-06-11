@@ -14,7 +14,7 @@ public class Veiculo {
             joinColumns = {@JoinColumn(name = "chassi")},
             inverseJoinColumns = {@JoinColumn(name = "idPecas")}
     )
-    Set<Pecas> pecas = new HashSet<>();
+    Set<Pecas> pecas= new HashSet<>();
     @Id
     private String chassi;
 
@@ -23,6 +23,7 @@ public class Veiculo {
     private Long ano;
 
     private String cor;
+
 
     public Veiculo() {
     }
@@ -33,6 +34,10 @@ public class Veiculo {
         this.modelo = modelo;
         this.ano = ano;
         this.cor = cor;
+    }
+
+    public String getIdString() {
+        return this.chassi;
     }
     public Set<Pecas> getPecas() {
         return pecas;
