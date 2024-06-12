@@ -16,6 +16,7 @@ public class Veiculo {
     )
     Set<Pecas> pecas= new HashSet<>();
     @Id
+    @Column(name = "chassi", length = 17, nullable = false, unique = true)
     private String chassi;
 
     private String modelo;
@@ -36,9 +37,6 @@ public class Veiculo {
         this.cor = cor;
     }
 
-    public String getIdString() {
-        return this.chassi;
-    }
     public Set<Pecas> getPecas() {
         return pecas;
     }
