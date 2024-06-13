@@ -1,6 +1,7 @@
 package br.com.senai.sa2semestre.suportemanutencao.entities;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -20,6 +21,7 @@ public class Manutencao {
 
     private LocalDateTime dataHoraFim;
 
+    @NotNull
     private String descricaoServico;
 
     private String estado;
