@@ -9,7 +9,7 @@ public class Estoque {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEstoque;
 
-    private Long quantidadeEstoque;
+    private Long quantidadeDisponivel;
 
     @ManyToOne
     @JoinColumn(name = "idPecas", referencedColumnName = "idPecas")
@@ -19,7 +19,7 @@ public class Estoque {
     }
     public Estoque(Long idEstoque, Long quantidadeEstoque, Pecas pecas) {
         this.idEstoque = idEstoque;
-        this.quantidadeEstoque = quantidadeEstoque;
+        this.quantidadeDisponivel = quantidadeEstoque;
         this.pecas = pecas;
     }
     public Long getIdEstoque(){
@@ -30,12 +30,12 @@ public class Estoque {
         this.idEstoque = idEstoque;
     }
 
-    public Long getQuantidadeEstoque() {
-        return quantidadeEstoque;
+    public Long getQuantidadeDisponivel() {
+        return quantidadeDisponivel;
     }
 
-    public void setQuantidadeEstoque(Long quantidadeEstoque) {
-        this.quantidadeEstoque = quantidadeEstoque;
+    public void setQuantidadeDisponivel(Long quantidadeDisponivel) {
+        this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
     public Pecas getPecas() {
@@ -54,14 +54,14 @@ public class Estoque {
         Estoque estoque = (Estoque) o;
 
         if (!idEstoque.equals(estoque.idEstoque)) return false;
-        if (!Objects.equals(quantidadeEstoque, estoque.quantidadeEstoque)) return false;
+        if (!Objects.equals(quantidadeDisponivel, estoque.quantidadeDisponivel)) return false;
         return Objects.equals(pecas, estoque.pecas);
     }
 
     @Override
     public int hashCode() {
         int result = idEstoque.hashCode();
-        result = 31 * result + (quantidadeEstoque != null ? quantidadeEstoque.hashCode() : 0);
+        result = 31 * result + (quantidadeDisponivel != null ? quantidadeDisponivel.hashCode() : 0);
         result = 31 * result + (pecas != null ? pecas.hashCode() : 0);
         return result;
     }
@@ -70,7 +70,7 @@ public class Estoque {
     public String toString() {
         return "Estoque{" +
                 "idEstoque=" + idEstoque +
-                ", quantidadeEstoque=" + quantidadeEstoque +
+                ", quantidadeEstoque=" + quantidadeDisponivel +
                 ", pecas=" + pecas +
                 '}';
     }

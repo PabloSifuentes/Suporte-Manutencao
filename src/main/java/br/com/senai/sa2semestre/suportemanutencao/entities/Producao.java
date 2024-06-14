@@ -3,8 +3,10 @@ package br.com.senai.sa2semestre.suportemanutencao.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
 @Entity
 public class Producao {
 @Id
@@ -17,7 +19,7 @@ public class Producao {
     private Pecas pecas;
 
 @OneToMany(mappedBy = "producao")
-private List<Qualidade> listaDeInspecao;
+private Set<Qualidade> listaDeInspecao = new HashSet<>();
 
     private Long quantidadeProduzida;
 
@@ -25,7 +27,7 @@ private List<Qualidade> listaDeInspecao;
     public Producao(){
     }
 
-    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, List<Qualidade> listaDeInspecao, Long quantidadeProduzida, String estado) {
+    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, Set<Qualidade> listaDeInspecao, Long quantidadeProduzida, String estado) {
         this.idProducao = idProducao;
         this.dataHora = dataHora;
         this.pecas = pecas;
@@ -58,11 +60,11 @@ private List<Qualidade> listaDeInspecao;
         this.pecas = pecas;
     }
 
-    public List<Qualidade> getListaDeInspecao() {
+    public Set<Qualidade> getListaDeInspecao() {
         return listaDeInspecao;
     }
 
-    public void setListaDeInspecao(List<Qualidade> listaDeInspecao) {
+    public void setListaDeInspecao(Set<Qualidade> listaDeInspecao) {
         this.listaDeInspecao = listaDeInspecao;
     }
 

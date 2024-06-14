@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Manutencao {
@@ -21,13 +23,14 @@ public class Manutencao {
 
     private LocalDateTime dataHoraFim;
 
-    @NotNull
+    @Column(nullable = false)
     private String descricaoServico;
 
     private String estado;
 
     public Manutencao(){
     }
+
     public Manutencao(Long idManutencao, Equipamento equipamento, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, String descricaoServico, String estado) {
         this.idManutencao = idManutencao;
         this.equipamento = equipamento;
@@ -36,6 +39,7 @@ public class Manutencao {
         this.descricaoServico = descricaoServico;
         this.estado = estado;
     }
+
     public Long getIdManutencao() {
         return idManutencao;
     }

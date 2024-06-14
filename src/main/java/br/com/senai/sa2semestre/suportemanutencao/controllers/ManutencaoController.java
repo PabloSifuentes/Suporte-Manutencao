@@ -1,6 +1,7 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
 import br.com.senai.sa2semestre.suportemanutencao.entities.Manutencao;
+import br.com.senai.sa2semestre.suportemanutencao.repositories.EquipamentoRepository;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.ManutencaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/manutencoes")
 public class ManutencaoController {
-
+    
     @Autowired
     private ManutencaoRepository manutencaoRepository;
 
+    @Autowired
+    private EquipamentoRepository equipamentoRepository;
     /**
      * Adiciona todos os itens na lista.
      */
@@ -36,11 +39,11 @@ public class ManutencaoController {
     /**
      * Cria um item adicionado no Repositório (Banco de dados).
      */
+
     @PostMapping
     public Manutencao createManutencao(@RequestBody Manutencao manutencao) {
         return manutencaoRepository.save(manutencao);
     }
-
     /**
      * Atualiza um item dentro do Repositório.
      */

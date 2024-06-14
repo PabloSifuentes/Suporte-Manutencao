@@ -2,28 +2,32 @@ package br.com.senai.sa2semestre.suportemanutencao.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
+@Table(name = "equipamento")
 public class Equipamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Long idEquipamento;
+    @Column(name = "idEquipamento")
+    private Long idEquipamento;
+    @Column(name = "tipoDeEquipamento")
+    private String tipoDeEquipamento;
+    @Column(name = "descricao")
+    private String descricao;
+    @Column(name = "estado")
+    private String estado;
 
-     private String  tipoDeEquipamento;
+    @OneToMany(mappedBy = "equipamento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Manutencao> listaDeManutencoes = new HashSet<>();
 
-     private String descricao;
-
-     private String estado;
-
-     @OneToMany(mappedBy = "equipamento")
-     private List<Manutencao> listaDeManutencoes;
-
-    public Equipamento(){
+    public Equipamento() {
     }
-    public Equipamento(Long idEquipamento, String tipoDeEquipamento, String descricao, String estado, List<Manutencao> listaDeManutencoes) {
+
+    public Equipamento(Long idEquipamento, String tipoDeEquipamento, String descricao, String estado, Set<Manutencao> listaDeManutencoes) {
         this.idEquipamento = idEquipamento;
         this.tipoDeEquipamento = tipoDeEquipamento;
         this.descricao = descricao;
@@ -63,11 +67,11 @@ public class Equipamento {
         this.estado = estado;
     }
 
-    public List<Manutencao> getListaDeManutencoes() {
+    public Set<Manutencao> getListaDeManutencoes() {
         return listaDeManutencoes;
     }
 
-    public void setListaDeManutencoes(List<Manutencao> listaDeManutencoes) {
+    public void setListaDeManutencoes(Set<Manutencao> listaDeManutencoes) {
         this.listaDeManutencoes = listaDeManutencoes;
     }
 

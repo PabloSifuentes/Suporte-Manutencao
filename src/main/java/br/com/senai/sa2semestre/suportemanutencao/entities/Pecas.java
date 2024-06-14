@@ -3,7 +3,6 @@ package br.com.senai.sa2semestre.suportemanutencao.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,22 +19,22 @@ public class Pecas {
    private int quantidade;
 
    @ManyToMany(mappedBy = "pecas")
-   private Set<Veiculo> veiculos = new HashSet<>();
+   private Set<Veiculo> listaDeVeiculo = new HashSet<>();
 
    @OneToMany(mappedBy = "pecas")
-   private List<Producao> listaDeProducao;
+   private Set<Producao> listaDeProducao = new HashSet<>();
 
    @OneToMany(mappedBy = "pecas")
-   private List<Estoque> listaDeEstoque;
+   private Set<Estoque> listaDeEstoque = new HashSet<>();
     public Pecas() {
     }
 
-    public Pecas(Long idPecas, String nome, String descricao, int quantidade, Set<Veiculo> veiculos, List<Producao> listaDeProducao, List<Estoque> listaDeEstoque) {
+    public Pecas(Long idPecas, String nome, String descricao, int quantidade, Set<Veiculo> listaDeVeiculo, Set<Producao> listaDeProducao, Set<Estoque> listaDeEstoque) {
         this.idPecas = idPecas;
         this.nome = nome;
         this.descricao = descricao;
         this.quantidade = quantidade;
-        this.veiculos = veiculos;
+        this.listaDeVeiculo = listaDeVeiculo;
         this.listaDeProducao = listaDeProducao;
         this.listaDeEstoque = listaDeEstoque;
     }
@@ -72,27 +71,27 @@ public class Pecas {
         this.quantidade = quantidade;
     }
 
-    public Set<Veiculo> getVeiculos() {
-        return veiculos;
+    public Set<Veiculo> getListaDeVeiculo() {
+        return listaDeVeiculo;
     }
 
-    public void setVeiculos(Set<Veiculo> veiculos) {
-        this.veiculos = veiculos;
+    public void setListaDeVeiculo(Set<Veiculo> listaDeVeiculo) {
+        this.listaDeVeiculo = listaDeVeiculo;
     }
 
-    public List<Producao> getListaDeProducao() {
+    public Set<Producao> getListaDeProducao() {
         return listaDeProducao;
     }
 
-    public void setListaDeProducao(List<Producao> listaDeProducao) {
+    public void setListaDeProducao(Set<Producao> listaDeProducao) {
         this.listaDeProducao = listaDeProducao;
     }
 
-    public List<Estoque> getListaDeEstoque() {
+    public Set<Estoque> getListaDeEstoque() {
         return listaDeEstoque;
     }
 
-    public void setListaDeEstoque(List<Estoque> listaDeEstoque) {
+    public void setListaDeEstoque(Set<Estoque> listaDeEstoque) {
         this.listaDeEstoque = listaDeEstoque;
     }
 
@@ -107,7 +106,8 @@ public class Pecas {
         if (!idPecas.equals(pecas.idPecas)) return false;
         if (!Objects.equals(nome, pecas.nome)) return false;
         if (!Objects.equals(descricao, pecas.descricao)) return false;
-        if (!Objects.equals(veiculos, pecas.veiculos)) return false;
+        if (!Objects.equals(listaDeVeiculo, pecas.listaDeVeiculo))
+            return false;
         if (!Objects.equals(listaDeProducao, pecas.listaDeProducao))
             return false;
         return Objects.equals(listaDeEstoque, pecas.listaDeEstoque);
@@ -119,7 +119,7 @@ public class Pecas {
         result = 31 * result + (nome != null ? nome.hashCode() : 0);
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
         result = 31 * result + quantidade;
-        result = 31 * result + (veiculos != null ? veiculos.hashCode() : 0);
+        result = 31 * result + (listaDeVeiculo != null ? listaDeVeiculo.hashCode() : 0);
         result = 31 * result + (listaDeProducao != null ? listaDeProducao.hashCode() : 0);
         result = 31 * result + (listaDeEstoque != null ? listaDeEstoque.hashCode() : 0);
         return result;
@@ -132,7 +132,7 @@ public class Pecas {
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", quantidade=" + quantidade +
-                ", veiculos=" + veiculos +
+                ", listaDeVeiculo=" + listaDeVeiculo +
                 ", listaDeProducao=" + listaDeProducao +
                 ", listaDeEstoque=" + listaDeEstoque +
                 '}';

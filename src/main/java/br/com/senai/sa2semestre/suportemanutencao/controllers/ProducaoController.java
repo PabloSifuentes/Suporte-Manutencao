@@ -48,6 +48,7 @@ public class ProducaoController {
     public ResponseEntity<Producao> updateProducao(@PathVariable Long id, @RequestBody Producao producaoComDadosAtualizados) {
         Optional<Producao> existingProducao = producaoRepository.findById(id);
         if (existingProducao.isPresent()) {
+            producaoComDadosAtualizados.setIdProducao(id);
             return ResponseEntity.ok(producaoRepository.save(producaoComDadosAtualizados));
         } else {
             return ResponseEntity.noContent().build();
