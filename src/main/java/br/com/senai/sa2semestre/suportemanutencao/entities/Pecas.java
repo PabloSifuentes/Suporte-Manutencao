@@ -7,24 +7,26 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Table(name = "pecas")
 public class Pecas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPecas;
 
+    @Column(name = "nome")
     private String nome;
-
+    @Column(name = "descricao")
     private String descricao;
-
+    @Column(name = "quantidade")
    private int quantidade;
 
-   @ManyToMany(mappedBy = "pecas")
+   @ManyToMany(mappedBy = "pecas", cascade = CascadeType.ALL)
    private Set<Veiculo> listaDeVeiculo = new HashSet<>();
 
-   @OneToMany(mappedBy = "pecas")
+   @OneToMany(mappedBy = "pecas", cascade = CascadeType.ALL, orphanRemoval = true)
    private Set<Producao> listaDeProducao = new HashSet<>();
 
-   @OneToMany(mappedBy = "pecas")
+   @OneToMany(mappedBy = "pecas", cascade = CascadeType.ALL, orphanRemoval = true)
    private Set<Estoque> listaDeEstoque = new HashSet<>();
     public Pecas() {
     }

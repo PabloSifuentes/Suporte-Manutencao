@@ -1,6 +1,8 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
+import br.com.senai.sa2semestre.suportemanutencao.entities.Pecas;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Veiculo;
+import br.com.senai.sa2semestre.suportemanutencao.repositories.PecasRepository;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.VeiculoRepositoy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 @RestController
@@ -15,6 +18,9 @@ import java.util.regex.Pattern;
 public class VeiculoController {
     @Autowired
     private VeiculoRepositoy veiculoRepositoy;
+
+    @Autowired
+    private PecasRepository pecasRepository;
 
     /**
      * Adiciona todos os itens na lista.
@@ -48,8 +54,8 @@ public class VeiculoController {
      * @return retorna o veiculo criado (salvo).
      */
     @PostMapping
-        public Veiculo createVeiculo (@RequestBody Veiculo veiculo) {
-            return veiculoRepositoy.save(veiculo);
+    public Veiculo createVeiculo (@RequestBody Veiculo veiculo) {
+        return veiculoRepositoy.save(veiculo);
     }
 
     /**

@@ -1,5 +1,6 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
+import br.com.senai.sa2semestre.suportemanutencao.entities.Equipamento;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Manutencao;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.EquipamentoRepository;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.ManutencaoRepository;
@@ -42,6 +43,11 @@ public class ManutencaoController {
 
     @PostMapping
     public Manutencao createManutencao(@RequestBody Manutencao manutencao) {
+        if (manutencao.getEquipamento() != null && manutencao.getEquipamento().getIdEquipamento() != null) {
+            Equipamento equipamento = equipamentoRepository.findById(manutencao.getEquipamento().getIdEquipamento())
+                    .orElseThrow(() -> new IllegalArgumentException("Equipamento não encontrado"));
+            manutencao.setEquipamento(equipamento);
+        }
         return manutencaoRepository.save(manutencao);
     }
     /**

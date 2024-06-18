@@ -1,7 +1,11 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
+import br.com.senai.sa2semestre.suportemanutencao.entities.Equipamento;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Estoque;
+import br.com.senai.sa2semestre.suportemanutencao.entities.Manutencao;
+import br.com.senai.sa2semestre.suportemanutencao.entities.Pecas;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.EstoqueRepository;
+import br.com.senai.sa2semestre.suportemanutencao.repositories.PecasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,8 @@ public class EstoqueController {
     @Autowired
     private EstoqueRepository estoqueRepository;
 
+    @Autowired
+    private PecasRepository pecasRepository;
     /**
      * Adiciona todos os itens na lista.
      */
@@ -37,6 +43,11 @@ public class EstoqueController {
      */
     @PostMapping
     public Estoque createEstoque(@RequestBody Estoque estoque) {
+        if (estoque.getPecas() != null && estoque.getPecas().getIdPecas() != null) {
+            Pecas pecas = pecasRepository.findById(estoque.getPecas().getIdPecas())
+                    .orElseThrow(() -> new IllegalArgumentException("Peça não encontrado"));
+            estoque.setPecas(pecas);
+        }
         return estoqueRepository.save(estoque);
     }
 

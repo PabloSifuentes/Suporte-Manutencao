@@ -1,5 +1,6 @@
 package br.com.senai.sa2semestre.suportemanutencao.entities;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 

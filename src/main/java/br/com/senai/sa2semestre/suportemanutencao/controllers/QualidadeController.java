@@ -1,6 +1,8 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
+import br.com.senai.sa2semestre.suportemanutencao.entities.Producao;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Qualidade;
+import br.com.senai.sa2semestre.suportemanutencao.repositories.ProducaoRepository;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.QualidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/qualidades")
 public class QualidadeController {
-@Autowired
+    @Autowired
     private QualidadeRepository qualidadeRepository;
+
+    @Autowired
+    private ProducaoRepository producaoRepository;
 
     /**
      * Adiciona todos os itns na lista.
@@ -37,6 +42,11 @@ public class QualidadeController {
      */
     @PostMapping
     public Qualidade createQualidade(@RequestBody Qualidade qualidade) {
+        if (qualidade.getProducao() != null && qualidade.getProducao().getIdProducao() != null) {
+            Producao producao = producaoRepository.findById(qualidade.getProducao().getIdProducao())
+                    .orElseThrow(() -> new RuntimeException("Produção não encontrado"));
+            qualidade.setProducao(producao);
+        }
         return qualidadeRepository.save(qualidade);
     }
 

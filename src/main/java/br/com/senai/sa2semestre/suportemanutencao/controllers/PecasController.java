@@ -34,11 +34,11 @@ public class PecasController {
 
     /**
      * Criar um item adicionando no Repositório (Banco de dados).
-     *
      */
     @PostMapping
-    public Pecas createPecas(@RequestBody Pecas pecas) {
-        return pecasRepository.save(pecas);
+    public ResponseEntity<Pecas> createPecas(@RequestBody Pecas pecas) {
+        Pecas pecaSalva = pecasRepository.save(pecas);
+        return ResponseEntity.ok(pecaSalva);
     }
 
     /**

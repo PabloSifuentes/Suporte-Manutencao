@@ -1,6 +1,8 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
+import br.com.senai.sa2semestre.suportemanutencao.entities.Pecas;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Producao;
+import br.com.senai.sa2semestre.suportemanutencao.repositories.PecasRepository;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.ProducaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,9 @@ public class ProducaoController {
 
     @Autowired
     private ProducaoRepository producaoRepository;
+
+    @Autowired
+    private PecasRepository pecasRepository;
 
     /**
      * Adiciona todos os itens na lista.
@@ -37,7 +42,12 @@ public class ProducaoController {
      * Cria um item adicionando no Repository (Banco de Dados).
      */
     @PostMapping
-    public Producao createProducao(@RequestBody Producao producao) {
+    public Producao createProducao (@RequestBody Producao producao) {
+        if (producao.getPecas() != null && producao.getPecas().getIdPecas() != null) {
+            Pecas pecas = pecasRepository.findById(producao.getPecas().getIdPecas())
+                    .orElseThrow(() -> new RuntimeException("Peça não encontrada"));
+            producao.setPecas(pecas);
+        }
         return producaoRepository.save(producao);
     }
 
