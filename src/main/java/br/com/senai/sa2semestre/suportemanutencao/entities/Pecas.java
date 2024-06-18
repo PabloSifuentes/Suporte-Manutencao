@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+/**
+ * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
+ * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
+ */
 @Entity
 @Table(name = "pecas")
 public class Pecas {
@@ -28,9 +31,24 @@ public class Pecas {
 
    @OneToMany(mappedBy = "pecas", cascade = CascadeType.ALL, orphanRemoval = true)
    private Set<Estoque> listaDeEstoque = new HashSet<>();
+
+    /**
+     * Construtor Padrão é necessário para a JPA instanciar a entidade.
+     */
     public Pecas() {
     }
 
+    /**
+     * Construtor com Parâmetros facilita a criação de instâncias da entidade
+     *  com valores especificos.
+     * @param idPecas O identificador único da manutencao.
+     * @param nome O nome da peça.
+     * @param descricao A descrição de peças.
+     * @param quantidade A quantidade de peças.
+     * @param listaDeVeiculo Lista de veiculos que usam essa peça.
+     * @param listaDeProducao Lista de produções que usam essa peça.
+     * @param listaDeEstoque Lista de Estoques que possuem essa peça.
+     */
     public Pecas(Long idPecas, String nome, String descricao, int quantidade, Set<Veiculo> listaDeVeiculo, Set<Producao> listaDeProducao, Set<Estoque> listaDeEstoque) {
         this.idPecas = idPecas;
         this.nome = nome;
@@ -127,6 +145,10 @@ public class Pecas {
         return result;
     }
 
+    /**
+     * Retorna uma representação em formato de String deste objeto.
+     * @return Retorna uma representação textual da entidade (Objeto).
+     */
     @Override
     public String toString() {
         return "Pecas{" +

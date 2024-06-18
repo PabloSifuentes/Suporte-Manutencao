@@ -5,23 +5,44 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
+ * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
+ */
 @Entity
+@Table(name = "qualidade")
 public class Qualidade {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idInspecao;
-@ManyToOne
-@JoinColumn(name = "idProducao", referencedColumnName = "idProducao")
+    @ManyToOne
+    @JoinColumn(name = "idProducao", referencedColumnName = "idProducao")
     private Producao producao;
 
-private LocalDateTime dataHora;
+    @Column(name = "dataHora")
+    private LocalDateTime dataHora;
 
-private String resultado;
+    @Column(name = "resultado")
+    private String resultado;
 
-private String comentarios;
+    @Column(name = "comentarios")
+    private String comentarios;
 
+    /**
+     * Construtor Padrão é necessário para a JPA instanciar a entidade.
+     */
     public Qualidade(){
     }
+
+    /**
+     * Construtor com Parâmetros facilita a criação de instâncias da entidade
+     * com valores especificos.
+     * @param idInspecao O identificador único de inspeção da qualidade.
+     * @param producao A produção associado a qualidade.
+     * @param dataHora A data e hora da inspeção.
+     * @param resultado O resultado da inspeção.
+     * @param comentarios Comentários adicionais sobre a inspeção.
+     */
     public Qualidade(Long idInspecao, Producao producao, LocalDateTime dataHora, String resultado, String comentarios) {
         this.idInspecao = idInspecao;
         this.producao = producao;
@@ -94,6 +115,10 @@ private String comentarios;
         return result;
     }
 
+    /**
+     * Retorna uma representação em formato de String deste objeto.
+     * @return Retorna uma representação textual da entidade (Objeto).
+     */
     @Override
     public String toString() {
         return "Qualidade{" +

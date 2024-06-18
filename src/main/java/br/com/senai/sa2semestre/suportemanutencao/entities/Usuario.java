@@ -1,27 +1,43 @@
 package br.com.senai.sa2semestre.suportemanutencao.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
+/**
+ * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
+ * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
+ */
 @Entity
+@Table(name = "usuario")
 public class Usuario {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "senha")
     private String senha;
 
+    /**
+     * Construtor Padrão é necessário para a JPA instanciar a entidade.
+     */
     public Usuario(){
     }
 
+    /**
+     * Construtor com Parâmetros facilita a criação de instâncias da entidade
+     * com valores especificos.
+     * @param idUsuario O identificador único do usuário.
+     * @param nome O nome do usuário.
+     * @param email O email do usuário.
+     * @param senha A senha do usuário.
+     */
     public Usuario(Long idUsuario, String nome, String email, String senha) {
         this.idUsuario = idUsuario;
         this.nome = nome;
@@ -83,6 +99,10 @@ public class Usuario {
         return result;
     }
 
+    /**
+     * Retorna uma representação em formato de String deste objeto.
+     * @return Retorna uma representação textual da entidade (Objeto).
+     */
     @Override
     public String toString() {
         return "Usuario{" +

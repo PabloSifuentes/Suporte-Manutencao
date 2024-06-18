@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
+ * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
+ */
 @Entity
 @Table(name = "equipamento")
 public class Equipamento {
@@ -24,9 +28,21 @@ public class Equipamento {
     @OneToMany(mappedBy = "equipamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Manutencao> listaDeManutencoes = new HashSet<>();
 
+    /**
+     * Construtor Padrão é necessário para a JPA instanciar a entidade.
+     */
     public Equipamento() {
     }
 
+    /**
+     * Construtor com Parâmetros facilita a criação de instâncias da entidade
+     * com valores especificos.
+     * @param idEquipamento O identificador único do equipamento.
+     * @param tipoDeEquipamento O tipo do equipamento.
+     * @param descricao A descrição do equipamento.
+     * @param estado O estado atual do equipamento.
+     * @param listaDeManutencoes O conjunto de manutenções associadas ao equipamento.
+     */
     public Equipamento(Long idEquipamento, String tipoDeEquipamento, String descricao, String estado, Set<Manutencao> listaDeManutencoes) {
         this.idEquipamento = idEquipamento;
         this.tipoDeEquipamento = tipoDeEquipamento;
@@ -100,6 +116,10 @@ public class Equipamento {
         return result;
     }
 
+    /**
+     * Retorna uma representação em formato de String deste objeto.
+     * @return Retorna uma representação textual da entidade (Objeto).
+     */
     @Override
     public String toString() {
         return "Equipamento{" +

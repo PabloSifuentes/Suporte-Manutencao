@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * @RestController Indica que esta classe é um controlador REST, onde cada método retorna
+ * um objeto diferente como uma resposta HTTP.
+ * @RequestMapping Define o mapeamento de URL base para este controlador.
+ */
 @RestController
 @RequestMapping("/producoes")
 public class ProducaoController {

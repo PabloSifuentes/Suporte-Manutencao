@@ -5,7 +5,13 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+/**
+ * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no bando de dados .
+ * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
+ */
 @Entity
+@Table(name = "vaiculo")
 public class Veiculo {
 
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -19,16 +25,30 @@ public class Veiculo {
     @Column(name = "chassi", length = 17, nullable = false, unique = true)
     private String chassi;
 
+    @Column(name = "modelo")
     private String modelo;
 
+    @Column(name = "ano")
     private Long ano;
 
+    @Column(name = "cor")
     private String cor;
 
-
+    /**
+     * Construtor Padrão é necessário para a JPA instanciar a entidade.
+     */
     public Veiculo() {
     }
 
+    /**
+     * Construtor com Parâmetros facilita a criação de instâncias da entidade
+     * com valores especificos.
+     * @param pecas conjunto de peças associado ao veiculo.
+     * @param chassi O numero do chassi do veiculo
+     * @param modelo O modelo de veiculo.
+     * @param ano O ano do veiculo.
+     * @param cor A cor do veiculo.
+     */
     public Veiculo(Set<Pecas> pecas, String chassi, String modelo, Long ano, String cor) {
         this.pecas = pecas;
         this.chassi = chassi;
@@ -101,6 +121,10 @@ public class Veiculo {
         return result;
     }
 
+    /**
+     * Retorna uma representação em formato de String deste objeto.
+     * @return Retorna uma representação textual da entidade (Objeto).
+     */
     @Override
     public String toString() {
         return "Veiculo{" +

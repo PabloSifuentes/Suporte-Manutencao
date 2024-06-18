@@ -7,26 +7,48 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
+ * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
+ */
 @Entity
+@Table(name = "producao")
 public class Producao {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProducao;
 
+    @Column(name = "dataHora")
     private LocalDateTime dataHora;
-@ManyToOne
-@JoinColumn(name = "idPecas", referencedColumnName = "idPecas")
+    @ManyToOne
+    @JoinColumn(name = "idPecas", referencedColumnName = "idPecas")
     private Pecas pecas;
 
-@OneToMany(mappedBy = "producao")
-private Set<Qualidade> listaDeInspecao = new HashSet<>();
+    @OneToMany(mappedBy = "producao")
+    private Set<Qualidade> listaDeInspecao = new HashSet<>();
 
+    @Column(name = "quantidadeProduzida")
     private Long quantidadeProduzida;
 
+    @Column(name = "estado")
     private String estado;
+
+    /**
+     * Construtor Padrão é necessário para a JPA instanciar a entidade.
+     */
     public Producao(){
     }
 
+    /**
+     * Construtor com Parâmetros facilita a criação de instâncias da entidade
+     * com valores especificos.
+     * @param idProducao O identificador único da produção.
+     * @param dataHora A data e hora de produção.
+     * @param pecas A peça associada há produção.
+     * @param listaDeInspecao Conjunto de inspeções associados a produção.
+     * @param quantidadeProduzida A quantidade produzida pela produção.
+     * @param estado O estado atual da produção.
+     */
     public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, Set<Qualidade> listaDeInspecao, Long quantidadeProduzida, String estado) {
         this.idProducao = idProducao;
         this.dataHora = dataHora;
@@ -112,6 +134,10 @@ private Set<Qualidade> listaDeInspecao = new HashSet<>();
         return result;
     }
 
+    /**
+     * Retorna uma representação em formato de String deste objeto.
+     * @return Retorna uma representação textual da entidade (Objeto).
+     */
     @Override
     public String toString() {
         return "Producao{" +
