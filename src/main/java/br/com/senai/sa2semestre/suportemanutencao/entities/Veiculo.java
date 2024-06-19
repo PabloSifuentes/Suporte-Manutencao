@@ -2,9 +2,7 @@ package br.com.senai.sa2semestre.suportemanutencao.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no bando de dados .
@@ -14,13 +12,13 @@ import java.util.Set;
 @Table(name = "vaiculo")
 public class Veiculo {
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Veiculos_Pecas",
             joinColumns = {@JoinColumn(name = "chassi")},
             inverseJoinColumns = {@JoinColumn(name = "idPecas")}
     )
-    Set<Pecas> pecas= new HashSet<>();
+    private List<Pecas> pecas= new ArrayList<>();
     @Id
     @Column(name = "chassi", length = 17, nullable = false, unique = true)
     private String chassi;
@@ -49,7 +47,7 @@ public class Veiculo {
      * @param ano O ano do veiculo.
      * @param cor A cor do veiculo.
      */
-    public Veiculo(Set<Pecas> pecas, String chassi, String modelo, Long ano, String cor) {
+    public Veiculo(List<Pecas> pecas, String chassi, String modelo, Long ano, String cor) {
         this.pecas = pecas;
         this.chassi = chassi;
         this.modelo = modelo;
@@ -57,11 +55,11 @@ public class Veiculo {
         this.cor = cor;
     }
 
-    public Set<Pecas> getPecas() {
+    public List<Pecas> getPecas() {
         return pecas;
     }
 
-    public void setPecas(Set<Pecas> pecas) {
+    public void setPecas(List<Pecas> pecas) {
         this.pecas = pecas;
     }
 
@@ -105,7 +103,7 @@ public class Veiculo {
         Veiculo veiculo = (Veiculo) o;
 
         if (!Objects.equals(pecas, veiculo.pecas)) return false;
-        if (!Objects.equals(chassi, veiculo.chassi)) return false;
+        if (!chassi.equals(veiculo.chassi)) return false;
         if (!Objects.equals(modelo, veiculo.modelo)) return false;
         if (!Objects.equals(ano, veiculo.ano)) return false;
         return Objects.equals(cor, veiculo.cor);
@@ -114,7 +112,7 @@ public class Veiculo {
     @Override
     public int hashCode() {
         int result = pecas != null ? pecas.hashCode() : 0;
-        result = 31 * result + (chassi != null ? chassi.hashCode() : 0);
+        result = 31 * result + chassi.hashCode();
         result = 31 * result + (modelo != null ? modelo.hashCode() : 0);
         result = 31 * result + (ano != null ? ano.hashCode() : 0);
         result = 31 * result + (cor != null ? cor.hashCode() : 0);

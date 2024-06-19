@@ -1,10 +1,9 @@
 package br.com.senai.sa2semestre.suportemanutencao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
@@ -26,7 +25,8 @@ public class Equipamento {
     private String estado;
 
     @OneToMany(mappedBy = "equipamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Manutencao> listaDeManutencoes = new HashSet<>();
+    @JsonIgnore
+    private List<Manutencao> listaDeManutencoes = new ArrayList<>();
 
     /**
      * Construtor Padrão é necessário para a JPA instanciar a entidade.
@@ -43,7 +43,7 @@ public class Equipamento {
      * @param estado O estado atual do equipamento.
      * @param listaDeManutencoes O conjunto de manutenções associadas ao equipamento.
      */
-    public Equipamento(Long idEquipamento, String tipoDeEquipamento, String descricao, String estado, Set<Manutencao> listaDeManutencoes) {
+    public Equipamento(Long idEquipamento, String tipoDeEquipamento, String descricao, String estado, List<Manutencao> listaDeManutencoes) {
         this.idEquipamento = idEquipamento;
         this.tipoDeEquipamento = tipoDeEquipamento;
         this.descricao = descricao;
@@ -83,37 +83,12 @@ public class Equipamento {
         this.estado = estado;
     }
 
-    public Set<Manutencao> getListaDeManutencoes() {
+    public List<Manutencao> getListaDeManutencoes() {
         return listaDeManutencoes;
     }
 
-    public void setListaDeManutencoes(Set<Manutencao> listaDeManutencoes) {
+    public void setListaDeManutencoes(List<Manutencao> listaDeManutencoes) {
         this.listaDeManutencoes = listaDeManutencoes;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Equipamento that = (Equipamento) o;
-
-        if (!idEquipamento.equals(that.idEquipamento)) return false;
-        if (!Objects.equals(tipoDeEquipamento, that.tipoDeEquipamento))
-            return false;
-        if (!Objects.equals(descricao, that.descricao)) return false;
-        if (!Objects.equals(estado, that.estado)) return false;
-        return Objects.equals(listaDeManutencoes, that.listaDeManutencoes);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idEquipamento.hashCode();
-        result = 31 * result + (tipoDeEquipamento != null ? tipoDeEquipamento.hashCode() : 0);
-        result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
-        result = 31 * result + (estado != null ? estado.hashCode() : 0);
-        result = 31 * result + (listaDeManutencoes != null ? listaDeManutencoes.hashCode() : 0);
-        return result;
     }
 
     /**

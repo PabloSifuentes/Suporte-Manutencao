@@ -1,6 +1,5 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
-import br.com.senai.sa2semestre.suportemanutencao.entities.Pecas;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Veiculo;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.PecasRepository;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.VeiculoRepositoy;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 /**

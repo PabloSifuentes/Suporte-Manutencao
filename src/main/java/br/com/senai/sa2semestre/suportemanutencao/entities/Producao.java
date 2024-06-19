@@ -1,11 +1,10 @@
 package br.com.senai.sa2semestre.suportemanutencao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
@@ -25,7 +24,8 @@ public class Producao {
     private Pecas pecas;
 
     @OneToMany(mappedBy = "producao")
-    private Set<Qualidade> listaDeInspecao = new HashSet<>();
+    @JsonIgnore
+    private List<Qualidade> listaDeInspecao = new ArrayList<>();
 
     @Column(name = "quantidadeProduzida")
     private Long quantidadeProduzida;
@@ -49,7 +49,7 @@ public class Producao {
      * @param quantidadeProduzida A quantidade produzida pela produção.
      * @param estado O estado atual da produção.
      */
-    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, Set<Qualidade> listaDeInspecao, Long quantidadeProduzida, String estado) {
+    public Producao(Long idProducao, LocalDateTime dataHora, Pecas pecas, List<Qualidade> listaDeInspecao, Long quantidadeProduzida, String estado) {
         this.idProducao = idProducao;
         this.dataHora = dataHora;
         this.pecas = pecas;
@@ -82,11 +82,11 @@ public class Producao {
         this.pecas = pecas;
     }
 
-    public Set<Qualidade> getListaDeInspecao() {
+    public List<Qualidade> getListaDeInspecao() {
         return listaDeInspecao;
     }
 
-    public void setListaDeInspecao(Set<Qualidade> listaDeInspecao) {
+    public void setListaDeInspecao(List<Qualidade> listaDeInspecao) {
         this.listaDeInspecao = listaDeInspecao;
     }
 

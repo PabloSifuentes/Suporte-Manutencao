@@ -1,10 +1,10 @@
 package br.com.senai.sa2semestre.suportemanutencao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+
 /**
  * @Entity Indica que a classe é uma entidade JPA e um objeto que será mapeado para uma tabela no banco de dados.
  * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
@@ -24,13 +24,16 @@ public class Pecas {
    private int quantidade;
 
    @ManyToMany(mappedBy = "pecas", cascade = CascadeType.ALL)
-   private Set<Veiculo> listaDeVeiculo = new HashSet<>();
+   @JsonIgnore
+   private List<Veiculo> listaDeVeiculo = new ArrayList<>();
 
    @OneToMany(mappedBy = "pecas", cascade = CascadeType.ALL, orphanRemoval = true)
-   private Set<Producao> listaDeProducao = new HashSet<>();
+   @JsonIgnore
+   private List<Producao> listaDeProducao = new ArrayList<>();
 
    @OneToMany(mappedBy = "pecas", cascade = CascadeType.ALL, orphanRemoval = true)
-   private Set<Estoque> listaDeEstoque = new HashSet<>();
+   @JsonIgnore
+   private List<Estoque> listaDeEstoque = new ArrayList<>();
 
     /**
      * Construtor Padrão é necessário para a JPA instanciar a entidade.
@@ -49,7 +52,7 @@ public class Pecas {
      * @param listaDeProducao Lista de produções que usam essa peça.
      * @param listaDeEstoque Lista de Estoques que possuem essa peça.
      */
-    public Pecas(Long idPecas, String nome, String descricao, int quantidade, Set<Veiculo> listaDeVeiculo, Set<Producao> listaDeProducao, Set<Estoque> listaDeEstoque) {
+    public Pecas(Long idPecas, String nome, String descricao, int quantidade, List<Veiculo> listaDeVeiculo, List<Producao> listaDeProducao, List<Estoque> listaDeEstoque) {
         this.idPecas = idPecas;
         this.nome = nome;
         this.descricao = descricao;
@@ -91,27 +94,27 @@ public class Pecas {
         this.quantidade = quantidade;
     }
 
-    public Set<Veiculo> getListaDeVeiculo() {
+    public List<Veiculo> getListaDeVeiculo() {
         return listaDeVeiculo;
     }
 
-    public void setListaDeVeiculo(Set<Veiculo> listaDeVeiculo) {
+    public void setListaDeVeiculo(List<Veiculo> listaDeVeiculo) {
         this.listaDeVeiculo = listaDeVeiculo;
     }
 
-    public Set<Producao> getListaDeProducao() {
+    public List<Producao> getListaDeProducao() {
         return listaDeProducao;
     }
 
-    public void setListaDeProducao(Set<Producao> listaDeProducao) {
+    public void setListaDeProducao(List<Producao> listaDeProducao) {
         this.listaDeProducao = listaDeProducao;
     }
 
-    public Set<Estoque> getListaDeEstoque() {
+    public List<Estoque> getListaDeEstoque() {
         return listaDeEstoque;
     }
 
-    public void setListaDeEstoque(Set<Estoque> listaDeEstoque) {
+    public void setListaDeEstoque(List<Estoque> listaDeEstoque) {
         this.listaDeEstoque = listaDeEstoque;
     }
 
