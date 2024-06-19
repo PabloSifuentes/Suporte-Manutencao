@@ -20,7 +20,8 @@ public class PecasController {
     private PecasRepository pecasRepository;
 
     /**
-     * Adicionar todos os itens  na lista.
+     * Adiciona todos os itens na lista.
+     * @return uma lista de todos os pecas existentes.
      */
     @GetMapping
     public List<Pecas> getALLPecas() {
@@ -28,7 +29,11 @@ public class PecasController {
     }
 
     /**
-     * Retorna o item respetivo ID.
+     * Retorna o item pelo respectivo ID.
+     *
+     * @param id o ID do item de peças a ser recuperado.
+     * @return uma resposta HTTP contendo o peças encontrado, ou uma resposta de "not found"
+     * se não encontrado.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Pecas> getPecasById(@PathVariable Long id) {
@@ -37,7 +42,9 @@ public class PecasController {
     }
 
     /**
-     * Criar um item adicionando no Repositório (Banco de dados).
+     * Cria um item adicionando no Repositório (Banco de dados).
+     * @param pecas o item de peças a ser criado.
+     * @return o peças criado.
      */
     @PostMapping
     public ResponseEntity<Pecas> createPecas(@RequestBody Pecas pecas) {
@@ -47,6 +54,11 @@ public class PecasController {
 
     /**
      * Atualiza um item dentro do Repositório.
+     *
+     * @param id o ID do item de peças a ser atualizado.
+     * @param pecasComDadosAtualizados o objeto peças contendo os dados atualizados.
+     * @return uma resposta HTTP contendo o peças atualizado, ou uma resposta de "not found"
+     * se o item de peças não for encontrado.
      */
     @PutMapping("/{id}")
     public ResponseEntity<Pecas> updatePecas(@PathVariable Long id, @RequestBody Pecas pecasComDadosAtualizados) {
@@ -61,6 +73,9 @@ public class PecasController {
 
     /**
      * Deleta um item dentro do Repositório.
+     * @param id o ID do item de peças a ser deletado.
+     * @return uma resposta HTTP indicando o resultado da operação: "no content"
+     * se deletado, ou "not found" se o item de peças não for encontrado.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarPecas(@PathVariable Long id) {

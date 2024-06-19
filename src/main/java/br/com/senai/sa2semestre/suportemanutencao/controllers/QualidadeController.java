@@ -25,7 +25,8 @@ public class QualidadeController {
     private ProducaoRepository producaoRepository;
 
     /**
-     * Adiciona todos os itns na lista.
+     * Adiciona todos os itens na lista.
+     * @return uma lista de todos as inpeções existentes.
      */
     @GetMapping
     public List<Qualidade> getAllQualidade() {
@@ -34,6 +35,10 @@ public class QualidadeController {
 
     /**
      * Retorna o item pelo respectivo ID.
+     *
+     * @param id o ID do item de inspeção a ser recuperado.
+     * @return uma resposta HTTP contendo a inspeção encontrado, ou uma resposta de "not found"
+     * se não encontrado.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Qualidade> getQualidadeById(@PathVariable Long id) {
@@ -42,7 +47,9 @@ public class QualidadeController {
     }
 
     /**
-     * Cria um item adicionando no Repository (Banco de dados).
+     * Cria um item adicionando no Repositório (Banco de dados).
+     * @param qualidade o item de estoque a ser criado.
+     * @return a inspeção criado.
      */
     @PostMapping
     public Qualidade createQualidade(@RequestBody Qualidade qualidade) {
@@ -55,7 +62,12 @@ public class QualidadeController {
     }
 
     /**
-     * Atualiza um item dentro do Repository.
+     * Atualiza um item dentro do Repositório.
+     *
+     * @param id o ID do item de inspeção a ser atualizado.
+     * @param qualidadeComDadosAtualizados o objeto qualidade contendo os dados atualizados.
+     * @return uma resposta HTTP contendo o Estoque atualizado, ou uma resposta de "not found"
+     * se o item de estoque não for encontrado.
      */
     @PutMapping("/{id}")
     public ResponseEntity<Qualidade> updateQualidade(@PathVariable Long id, @RequestBody Qualidade qualidadeComDadosAtualizados) {
@@ -69,7 +81,10 @@ public class QualidadeController {
     }
 
     /**
-     * Deleta um item dentro do Repository.
+     * Deleta um item dentro do Repositório.
+     * @param id o ID do item de inspeção a ser deletado.
+     * @return uma resposta HTTP indicando o resultado da operação: "no content"
+     * se deletado, ou "not found" se o item de inspeção não for encontrado.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarQualidade(@PathVariable Long id) {

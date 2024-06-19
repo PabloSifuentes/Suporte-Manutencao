@@ -22,6 +22,7 @@ public class EquipamentoController {
 
     /**
      * Adiciona todos os itens na lista.
+     * @return Uma lista de todos os Equipamento existente.
      */
     @GetMapping
     public List<Equipamento> getAllEquipamentos() {
@@ -30,6 +31,9 @@ public class EquipamentoController {
 
     /**
      * Retorna o item pelo respectivo ID.
+     * @param id  o ID do equipamento a ser recuperado.
+     * @return Uma resposta HTTP contendo o Equipamento encontrado, ou uma
+     * resposta de "not found" se não encontrado.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Equipamento> getEquipamentoById(@PathVariable Long id) {
@@ -40,6 +44,8 @@ public class EquipamentoController {
 
     /**
      * Cria um item adicionando no Repositório (Banco de dados).
+     * @param equipamento  O equipamento a ser criado.
+     * @return o Equipamento criado.
      */
     @PostMapping
     public Equipamento createEquipamento(@RequestBody Equipamento equipamento) {
@@ -48,6 +54,11 @@ public class EquipamentoController {
 
     /**
      * Atualiza um item dentro do Repositório.
+     *
+     * @param id O ID equipamento a ser atualizado.
+     * @param equipamentoComDadosAtualizados O objeto Equipamento contendo os dados atualizados.
+     * @return Uma resposta HTTP contendo o Equipamento atualizado, ou uma resposta de "not foud"
+     * se o equipamento não for encontrado.
      */
     @PutMapping("/{id}")
     public ResponseEntity<Equipamento> upadateEquipamento(@PathVariable Long id,
@@ -63,15 +74,19 @@ public class EquipamentoController {
 
     /**
      * Deleta um item dentro do Repositório.
+     *
+     * @param id O ID do equipamento a ser deletado.
+     * @return Uma resposta HTTP indicando o resultado da operação: "no content" se deletado, ou
+     * "not found" se o equipamento não for encontrado.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEquipamento(@PathVariable Long id) {
         Optional<Equipamento> equipamentoParaDeletar = equipamentoRepository.findById(id);
         if (equipamentoParaDeletar.isPresent()) {
             equipamentoRepository.delete(equipamentoParaDeletar.get());
-            return ResponseEntity.noContent().build(); // Conteúdo deletado.
+            return ResponseEntity.noContent().build();
         }else{
-            return ResponseEntity.notFound().build(); // ID não encontrado.
+            return ResponseEntity.notFound().build();
         }
     }
 }

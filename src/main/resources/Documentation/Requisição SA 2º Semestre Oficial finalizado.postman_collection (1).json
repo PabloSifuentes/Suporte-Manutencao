@@ -1,0 +1,1047 @@
+{
+	"info": {
+		"_postman_id": "2d7bc019-5879-456e-aa7f-c9f23c9d74f7",
+		"name": "Requisição SA 2º Semestre Oficial finalizado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35355097"
+	},
+	"item": [
+		{
+			"name": "Equipamento",
+			"item": [
+				{
+					"name": "Criar Equipamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoDeEquipamento\":\"Sensores\",\r\n    \"descricao\":\"Possuem a função de medir e controlar processos.\",\r\n    \"estado\":\"Em Manutenção\",\r\n    \"listaDeManutencoes\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todos Os Equipamentos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter o Equipamento pelo ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipamentos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipamentos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Equipamento pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEquipamento\": 2,\r\n    \"tipoDeEquipamento\": \"Softwares\",\r\n    \"descricao\": \"Função de supervisionar processos, reunir dados e gerar relatórios.\",\r\n    \"estado\": \"Em Manutenção\",\r\n    \"listaDeManutencoes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipamentos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipamentos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Equipamento pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/equipamentos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"equipamentos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manutenção",
+			"item": [
+				{
+					"name": "Criar Manutenção",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"equipamento\" : {\r\n    \"idEquipamento\" : 3\r\n},\r\n \"dataHoraInicio\": \"2024-06-12T18:59:00\",\r\n  \"dataHoraFim\": \"2024-06-12T22:00:00\",\r\n  \"descricaoServico\": \"Manutenção preventiva do equipamento Sensores\",\r\n  \"estado\": \"Operante\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/manutencoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manutencoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todos As Manutenções",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/manutencoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manutencoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter a Manutenção pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/manutencoes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manutencoes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Manutenção pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n\"equipamento\" : {\r\n    \"idEquipamento\" : 3\r\n},\r\n \"dataHoraInicio\": \"2024-06-12T18:59:00\",\r\n  \"dataHoraFim\": \"2024-06-12T22:00:00\",\r\n  \"descricaoServico\": \"Manutenção preventiva do equipamento Softwares\",\r\n  \"estado\": \"ativado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/manutencoes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manutencoes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Manutenção pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/manutencoes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"manutencoes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estoque",
+			"item": [
+				{
+					"name": "Criar Estoque",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidadeDisponivel\" : \"1250\",\r\n    \"pecas\" : {\r\n        \"idPecas\" : 2\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estoque",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todos No Estoque",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estoque",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter o Estoque pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estoque/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estoque",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Estoque pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantidadeDisponivel\" : \"1000\",\r\n    \"pecas\" : {\r\n        \"idPecas\" : 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estoque/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estoque",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Estoque pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estoque/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estoque",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peças",
+			"item": [
+				{
+					"name": "Criar Peças",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Pistão\",\r\n    \"descricao\" : \"Alimentado a potência do motor por meio de energia gerada pela combustão.\",\r\n    \"quantidade\" : \"500\",\r\n    \"listaDeVeiculo\" : [],\r\n    \"listaDeProducao\" : [],\r\n    \"listaDeEstoque\" : []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pecas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pecas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todas as Peças",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pecas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pecas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Peça pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pecas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pecas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Peça pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Caixa de Câmbio\",\r\n    \"descricao\" : \"Engrenagem que completa o sistema de marcha do carro, funcionando segundo as escalas de velocidade do motor.\",\r\n    \"quantidade\" : \"600\",\r\n    \"listaDeVeiculo\" : [],\r\n    \"listaDeProducao\" : [],\r\n    \"listaDeEstoque\" : []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pecas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pecas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Peça pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pecas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pecas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produção",
+			"item": [
+				{
+					"name": "Criar Produção",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pecas\" : {\r\n        \"idPecas\" : 2\r\n},\r\n    \"dataHora\" : \"2024-06-11T15:00:00\",\r\n    \"listaDeInspecao\" : [],\r\n    \"quantidadeProduzida\" : \"400\",\r\n    \"estado\" : \"Operante\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/producoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"producoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todas As Produções",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producao\" : {},\r\n    \"dataHora\" : \"2024-06-11T15\",\r\n    \"resultado\" : \"aprovado\",\r\n    \"comentarios\" : \"sem mancha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/producoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"producoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Produção pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/producoes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"producoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Peça pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pecas\" : {\r\n        \"idPecas\" : 2\r\n},\r\n    \"dataHora\" : \"2024-06-11T15:00:00\",\r\n    \"listaDeInspecao\" : [],\r\n    \"quantidadeProduzida\" : \"500\",\r\n    \"estado\" : \"desativado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/producoes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"producoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Peça pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/producoes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"producoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Qualidade",
+			"item": [
+				{
+					"name": "Criar Inspeção",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producao\" : {\r\n     \"idProducao\" : 2\r\n},\r\n   \"dataHora\" : \"2024-06-11T15:00:00\",\r\n    \"resultado\" : \"aprovado\",\r\n    \"comentarios\" : \"Sem defeitos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/qualidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"qualidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todas as Inspeções",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/qualidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"qualidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter inspeção pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/qualidades/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"qualidades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar inspeção pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producao\" : {\r\n     \"idProducao\" : 2,\r\n    \"dataHora\" : \"2024-06-11T15:00:00\",\r\n    \"listaDeInspecao\" : [],\r\n    \"quantidadeProduzida\" : \"500\",\r\n    \"estado\" : \"Ativo\"\r\n},\r\n    \"dataHora\" : \"2024-06-11T15:00:00\",\r\n    \"resultado\" : \"reprovado\",\r\n    \"comentarios\" : \"Com defeito, peça danificada.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/qualidades/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"qualidades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar inspeção pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/qualidades/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"qualidades",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuário",
+			"item": [
+				{
+					"name": "Criar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Pablo\",\r\n    \"email\" : \"pablo@gmail.com\",\r\n    \"senha\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todas os Usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Usuários pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Usuários pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\" : \"Paulo\",\r\n    \"email\" : \"paulo@gmail.com\",\r\n    \"senha\" : \"33333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Usuário pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Veiculo",
+			"item": [
+				{
+					"name": "Criar Veiculo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pecas\": [\r\n        {\r\n            \"idPecas\": 2\r\n        }\r\n    ],\r\n    \"chassi\": \"jh321\",\r\n    \"modelo\": \"fiat\",\r\n    \"ano\": 2012,\r\n    \"cor\": \"preto\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/veiculo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"veiculo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Todos os Veiculos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/veiculo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"veiculo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Veiculo pelo chassi",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/veiculo/jh321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"veiculo",
+								"jh321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Veiculo pelo chassi",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pecas\": [\r\n        {\r\n            \"idPecas\": 2\r\n        }\r\n    ],\r\n  \"modelo\": \"Ford Fusion\",\r\n  \"ano\": 2022,\r\n  \"cor\": \"Verde\",\r\n  \"chassi\": \"jh321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/veiculo/jh321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"veiculo",
+								"jh321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Veiculo pelo chassi",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/veiculo/jh321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"veiculo",
+								"jh321"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

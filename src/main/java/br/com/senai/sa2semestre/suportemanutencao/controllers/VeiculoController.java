@@ -66,7 +66,8 @@ public class VeiculoController {
      *
      * @param chassi
      * @param veiculosComDadosAtualizados
-     * @return se chassi do existingVeiculo for igual veiculoRepositoy, retorna o veiculo indicado (atualizado), se não chassi não encontrado.
+     * @return se chassi do existingVeiculo for igual veiculoRepositoy, retorna o veiculo indicado (atualizado),
+     * se não chassi não encontrado.
      */
     @PutMapping("/{chassi}")
     public ResponseEntity<Veiculo> updateVeiculo(@PathVariable String chassi, @RequestBody Veiculo veiculosComDadosAtualizados) {

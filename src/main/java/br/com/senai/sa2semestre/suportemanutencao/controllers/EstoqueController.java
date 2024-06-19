@@ -1,8 +1,6 @@
 package br.com.senai.sa2semestre.suportemanutencao.controllers;
 
-import br.com.senai.sa2semestre.suportemanutencao.entities.Equipamento;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Estoque;
-import br.com.senai.sa2semestre.suportemanutencao.entities.Manutencao;
 import br.com.senai.sa2semestre.suportemanutencao.entities.Pecas;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.EstoqueRepository;
 import br.com.senai.sa2semestre.suportemanutencao.repositories.PecasRepository;
@@ -27,6 +25,7 @@ public class EstoqueController {
     private PecasRepository pecasRepository;
     /**
      * Adiciona todos os itens na lista.
+     * @return uma lista de todos os Estoque existentes.
      */
     @GetMapping
     public List<Estoque> getALLEstoque() {
@@ -35,6 +34,10 @@ public class EstoqueController {
 
     /**
      * Retorna o item pelo respectivo ID.
+     *
+     * @param id o ID do item de estoque a ser recuperado.
+     * @return uma resposta HTTP contendo o Estoque encontrado, ou uma resposta de "not found"
+     * se não encontrado.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Estoque> getEstoqueById(@PathVariable Long id) {
@@ -44,6 +47,8 @@ public class EstoqueController {
 
     /**
      * Cria um item adicionando no Repositório (Banco de dados).
+     * @param estoque o item de estoque a ser criado.
+     * @return o Estoque criado.
      */
     @PostMapping
     public Estoque createEstoque(@RequestBody Estoque estoque) {
@@ -57,6 +62,11 @@ public class EstoqueController {
 
     /**
      * Atualiza um item dentro do Repositório.
+     *
+     * @param id o ID do item de estoque a ser atualizado.
+     * @param estoqueComDadosAtualizados o objeto Estoque contendo os dados atualizados.
+     * @return uma resposta HTTP contendo o Estoque atualizado, ou uma resposta de "not found"
+     * se o item de estoque não for encontrado.
      */
     @PutMapping("/{id}")
     public ResponseEntity<Estoque> UpdateEstoque(@PathVariable Long id, @RequestBody Estoque estoqueComDadosAtualizados) {
@@ -71,15 +81,18 @@ public class EstoqueController {
 
     /**
      * Deleta um item dentro do Repositório.
+     * @param id o ID do item de estoque a ser deletado.
+     * @return uma resposta HTTP indicando o resultado da operação: "no content"
+     * se deletado, ou "not found" se o item de estoque não for encontrado.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarEstoque(@PathVariable Long id) {
         Optional<Estoque> estoqueParaDeletar = estoqueRepository.findById(id);
         if (estoqueParaDeletar.isPresent()) {
             estoqueRepository.delete(estoqueParaDeletar.get());
-            return ResponseEntity.noContent().build(); //Conteúdo deletado.
+            return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.notFound().build(); //ID não encontrado.
+            return ResponseEntity.notFound().build();
         }
     }
 }

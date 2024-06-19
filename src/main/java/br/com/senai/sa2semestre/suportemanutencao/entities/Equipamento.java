@@ -91,6 +91,31 @@ public class Equipamento {
         this.listaDeManutencoes = listaDeManutencoes;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Equipamento that = (Equipamento) o;
+
+        if (!idEquipamento.equals(that.idEquipamento)) return false;
+        if (!Objects.equals(tipoDeEquipamento, that.tipoDeEquipamento))
+            return false;
+        if (!Objects.equals(descricao, that.descricao)) return false;
+        if (!Objects.equals(estado, that.estado)) return false;
+        return Objects.equals(listaDeManutencoes, that.listaDeManutencoes);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idEquipamento.hashCode();
+        result = 31 * result + (tipoDeEquipamento != null ? tipoDeEquipamento.hashCode() : 0);
+        result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
+        result = 31 * result + (estado != null ? estado.hashCode() : 0);
+        result = 31 * result + (listaDeManutencoes != null ? listaDeManutencoes.hashCode() : 0);
+        return result;
+    }
+
     /**
      * Retorna uma representação em formato de String deste objeto.
      * @return Retorna uma representação textual da entidade (Objeto).

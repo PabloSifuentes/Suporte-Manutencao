@@ -24,8 +24,10 @@ public class ManutencaoController {
 
     @Autowired
     private EquipamentoRepository equipamentoRepository;
+
     /**
      * Adiciona todos os itens na lista.
+     * @return uma lista de todos as manutencoes existentes.
      */
     @GetMapping
     public List<Manutencao> getAllManutencao() {
@@ -34,6 +36,10 @@ public class ManutencaoController {
 
     /**
      * Retorna o item pelo respectivo ID.
+     *
+     * @param id o ID do item de manutencao a ser recuperado.
+     * @return uma resposta HTTP contendo a manutencao encontrado, ou uma resposta de "not found"
+     * se não encontrado.
      */
     @GetMapping("/{id}")
     public ResponseEntity<Manutencao> getManutencaoById(@PathVariable Long id) {
@@ -42,7 +48,9 @@ public class ManutencaoController {
     }
 
     /**
-     * Cria um item adicionado no Repositório (Banco de dados).
+     * Cria um item adicionando no Repositório (Banco de dados).
+     * @param manutencao o item de manutencao a ser criado.
+     * @return a manutencao criado.
      */
 
     @PostMapping
@@ -56,6 +64,11 @@ public class ManutencaoController {
     }
     /**
      * Atualiza um item dentro do Repositório.
+     *
+     * @param id o ID do item de manutencao a ser atualizado.
+     * @param manutencaoComDadosAtualizados  o objeto manutencao contendo os dados atualizados.
+     * @return uma resposta HTTP contendo a manutencao atualizado, ou uma resposta de "not found"
+     * se o item de manutencao não for encontrado.
      */
     @PutMapping("/{id}")
     public ResponseEntity<Manutencao> upadateManutencao(@PathVariable Long id, @RequestBody Manutencao manutencaoComDadosAtualizados) {
@@ -71,15 +84,18 @@ public class ManutencaoController {
 
     /**
      * Deleta um item dentro do Repositório.
+     * @param id o ID do item de manutencao a ser deletado.
+     * @return uma resposta HTTP indicando o resultado da operação: "no content"
+     * se deletado, ou "not found" se o item de manutencao não for encontrado.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteManutencao(@PathVariable Long id) {
         Optional<Manutencao> manutencaoParaDeletar = manutencaoRepository.findById(id);
         if (manutencaoParaDeletar.isPresent()) {
             manutencaoRepository.delete(manutencaoParaDeletar.get());
-            return ResponseEntity.noContent().build(); //Conteúdo deletado.
+            return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.notFound().build(); //ID não encontrado.
+            return ResponseEntity.notFound().build();
         }
     }
 }

@@ -9,7 +9,7 @@ import java.util.*;
  * @Table Especifica o nome da tabela no banco de dados que será mapeada para esta entidade.
  */
 @Entity
-@Table(name = "vaiculo")
+@Table(name = "veiculo")
 public class Veiculo {
 
     @ManyToMany(fetch = FetchType.EAGER)

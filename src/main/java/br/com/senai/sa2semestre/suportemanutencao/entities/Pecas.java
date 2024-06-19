@@ -44,7 +44,7 @@ public class Pecas {
     /**
      * Construtor com Parâmetros facilita a criação de instâncias da entidade
      *  com valores especificos.
-     * @param idPecas O identificador único da manutencao.
+     * @param idPecas O identificador único de peças.
      * @param nome O nome da peça.
      * @param descricao A descrição de peças.
      * @param quantidade A quantidade de peças.
